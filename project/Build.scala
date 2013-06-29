@@ -29,6 +29,5 @@ object ApplicationBuild extends Build {
 
   val main = play.Project(appName, appVersion, deps).settings(
     // Add your own project settings here
-
   )
 }
