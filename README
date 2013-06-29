@@ -1,3 +1,13 @@
-A play web app
---
+# A play web app
+
+### Howto
+
+`play idea` or `sbt gen-idea update-classifiers` (downloads sources)
+
+(`sbt gen-idea` requires https://github.com/mpeltonen/sbt-idea)
+
+## Start
+
 `play idea`
+
+
