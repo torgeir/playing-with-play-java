@@ -3,10 +3,10 @@ package controllers;
 import play.Configuration;
 import play.Logger;
 import play.Play;
+import play.api.templates.Html;
 import play.mvc.Controller;
 import play.mvc.Result;
 import redis.clients.jedis.Jedis;
-import views.html.index;
 
 public class Application extends Controller {
   
@@ -23,7 +23,8 @@ public class Application extends Controller {
         if (pass != null) jedis.auth(pass);
 
         Long visits = jedis.incr("visits");
-        return ok(views.html.index.render(visits));
+        Html html = views.html.index.render(visits);
+        return ok(html);
     }
   
 }
