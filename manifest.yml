@@ -7,12 +7,12 @@ applications:
   path: dist/playing-with-play-java-1.0-SNAPSHOT.zip
   runtime: java7
   services:
-    mongolab-4fefc:
+    mongolab:
       label: mongolab
       provider: mongolab
       version: n/a
       plan: sandbox
-    rediscloud-50fc:
+    rediscloud:
       label: rediscloud
       provider: garantiadata
       version: n/a
