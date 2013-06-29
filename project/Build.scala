@@ -18,14 +18,15 @@ object ApplicationBuild extends Build {
     // lib/hibernate-jpa-2.0-api-1.0.1.Final.jar
   )
 
-  val depsRedis = Seq(
-    "redis.clients" % "jedis" % "2.1.0"
-  )
+  val depsRedis = Seq("redis.clients" % "jedis" % "2.1.0")
+
+  val depsDi = Seq("com.google.inject" % "guice" % "3.0")
 
   val deps =
     depsApp ++
     depsCloudfoundry ++
-    depsRedis
+    depsRedis ++
+    depsDi
 
   val main = play.Project(appName, appVersion, deps).settings(
     // Add your own project settings here

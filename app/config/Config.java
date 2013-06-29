@@ -5,17 +5,17 @@ import play.Play;
 
 public class Config {
 
-    private static Configuration configuration;
+    Configuration configuration;
 
-    static {
+    public Config() {
         configuration = Play.application().configuration();
     }
 
-    public static String getString(String key) {
+    public String getString(String key) {
         return configuration.getString(key);
     }
 
-    public static int getInt(String key) {
+    public int getInt(String key) {
         return configuration.getInt(key);
     }
 }
