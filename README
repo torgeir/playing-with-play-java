@@ -6,8 +6,13 @@
 
 (`sbt gen-idea` requires https://github.com/mpeltonen/sbt-idea)
 
-## Start
+### Start
 
 `play idea`
 
+### Troubleshooting
+
+#### Idea won't compile
+
+Mark `target/scala-2.10/classes_managed` and `target/scala-2.10/src_managed/main` as Source Folders
 
