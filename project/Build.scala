@@ -6,23 +6,29 @@ object ApplicationBuild extends Build {
   val appName         = "playing-with-play-java"
   val appVersion      = "1.0-SNAPSHOT"
 
-  val appDependencies = Seq(
-    // Add your project dependencies here,
+  val depsApp = Seq(
     javaCore,
     javaJdbc,
     javaEbean
   )
 
-  val cloudfoundryDependencies = Seq(
+  val depsCloudfoundry = Seq(
     javaJpa
     // lib/auto-reconfiguration-0.6.6.jar
     // lib/hibernate-jpa-2.0-api-1.0.1.Final.jar
   )
 
-  val dependencies = appDependencies ++ cloudfoundryDependencies
-
-  val main = play.Project(appName, appVersion, dependencies).settings(
-    // Add your own project settings here
+  val depsRedis = Seq(
+    "redis.clients" % "jedis" % "2.1.0"
   )
 
+  val deps =
+    depsApp ++
+    depsCloudfoundry ++
+    depsRedis
+
+  val main = play.Project(appName, appVersion, deps).settings(
+    // Add your own project settings here
+
+  )
 }
