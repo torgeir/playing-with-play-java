@@ -20,7 +20,9 @@ Create a "Play 2 App" run configuration in idea
 
 ### New dependencies aren't descovered
 
-`play idea`
+`sbt gen-idea update-classifiers`
+
+(gen-idea requires https://github.com/mpeltonen/sbt-idea)
 
 ### Idea won't compile #1
 
