@@ -10,6 +10,13 @@
 
 `play idea`
 
+### Build for cloudfoundry
+`play clean compile`
+`play -Dconfig.file=conf/cloud.conf dist`
+
+### Deploy to cloudfoundry
+`cf push`
+
 ### Troubleshooting
 
 #### Idea won't compile

@@ -1,0 +1,19 @@
+---
+applications:
+- name: playing-with-play-java
+  memory: 256MB
+  instances: 1
+  url: playing-with-play-java.cfapps.io
+  path: dist/playing-with-play-java-1.0-SNAPSHOT.zip
+  runtime: java7
+  services:
+    mongolab-4fefc:
+      label: mongolab
+      provider: mongolab
+      version: n/a
+      plan: sandbox
+    rediscloud-50fc:
+      label: rediscloud
+      provider: garantiadata
+      version: n/a
+      plan: 20mb
