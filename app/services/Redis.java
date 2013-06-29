@@ -4,30 +4,26 @@ import config.Config;
 import play.Logger;
 import redis.clients.jedis.Jedis;
 
-public class Redis {
+class Redis {
 
-    final String host;
-    final int port;
-    final String pass;
+    static final String host = Config.getString("redis.host");
+    static final int port    = Config.getInt("redis.port");
+    static final String pass = Config.getString("redis.pass");
 
-    Jedis jedis;
+    static Jedis jedis;
 
-    public Redis() {
-        host = Config.getString("redis.host");
-        port = Config.getInt("redis.port");
-        pass = Config.getString("redis.pass");
+    static {
+        jedis = new Jedis(host, port);
+        if (pass != null)
+            jedis.auth(pass);
+        Logger.info(String.format("Connecting to Redis on %s:%s", host, port));
     }
 
-    private Jedis getInstance() {
-        if (jedis == null) {
-            jedis = new Jedis(host, port);
-            if (pass != null) jedis.auth(pass);
-            Logger.info(String.format("Connecting to Redis on %s:%s", host, port));
-        }
-        return jedis;
+    public static Long incr(String key) {
+        return jedis.incr(key);
     }
 
-    public Long incr(String visits) {
-        return getInstance().incr(visits);
+    public static String get(String key) {
+        return jedis.get(key);
     }
 }

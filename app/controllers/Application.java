@@ -1,19 +1,16 @@
 package controllers;
 
-import play.api.templates.Html;
 import play.mvc.Controller;
 import play.mvc.Result;
-import services.Redis;
+import services.VisitorService;
 
 public class Application extends Controller {
   
     public static Result index() {
+        VisitorService.increaseNumberOfVisits();
 
-        Redis redis = new Redis();
-        Long visits = redis.incr("visits");
-        Html html = views.html.index.render(visits);
-
-        return ok(html);
+        Long visits = VisitorService.numberOfVisits();
+        return ok(views.html.index.render(visits));
     }
   
 }
