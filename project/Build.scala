@@ -13,8 +13,16 @@ object ApplicationBuild extends Build {
     javaEbean
   )
 
-  val main = play.Project(appName, appVersion, appDependencies).settings(
-    // Add your own project settings here      
+  val cloudfoundryDependencies = Seq(
+    javaJpa
+    // lib/auto-reconfiguration-0.6.6.jar
+    // lib/hibernate-jpa-2.0-api-1.0.1.Final.jar
+  )
+
+  val dependencies = appDependencies ++ cloudfoundryDependencies
+
+  val main = play.Project(appName, appVersion, dependencies).settings(
+    // Add your own project settings here
   )
 
 }
