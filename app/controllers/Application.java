@@ -3,7 +3,7 @@ package controllers;
 import play.api.templates.Html;
 import play.mvc.Controller;
 import play.mvc.Result;
-import services.redis.Redis;
+import services.Redis;
 
 public class Application extends Controller {
   
