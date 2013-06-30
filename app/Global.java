@@ -1,26 +1,32 @@
 import com.google.inject.Guice;
+import com.google.inject.Inject;
 import com.google.inject.Injector;
 import play.Application;
 import play.GlobalSettings;
 import play.Logger;
 import play.mvc.Action;
 import play.mvc.Http.Request;
+import redis.clients.jedis.JedisPool;
 
 import java.lang.reflect.Method;
 
 public class Global extends GlobalSettings {
 
-    Injector injector;
+    static Injector injector = Guice.createInjector(new PlayingWithPlayModule());
 
-    @Override
+    @Inject
+    JedisPool jedisPool;
+
     public void onStart(Application app) {
         Logger.info("Application has started");
-        injector = Guice.createInjector(new PlayingWithPlayModule());
     }
 
     @Override
     public void onStop(Application app) {
         Logger.info("Application shutdown...");
+
+        Logger.info("Destroying jedis pool");
+        jedisPool.destroy();
     }
 
     @Override
@@ -31,7 +37,6 @@ public class Global extends GlobalSettings {
 
     @Override
     public <A> A getControllerInstance(Class<A> clazz) throws IllegalAccessException, InstantiationException {
-        Logger.info("Trying to instantiate a controlller for: " + clazz.getSimpleName());
         return injector.getInstance(clazz);
     }
 
