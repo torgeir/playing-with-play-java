@@ -1,7 +1,6 @@
-@(numberOfVisists: Long)
+@main("restart") {
 
-    @main("Welcome to Play 2.1") {
-
-        We've had @numberOfVisists visits
-
+    @helper.form(routes.Application.restart()) {
+        <input type="submit" value="Restart"></input>
     }
+}
